@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h1>Unit Converter</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Tabs Section -->
+    <section class="tabs-section">
+        <div class="container">
+            <div class="tabs-container" id="tabsContainer">
+                <button class="tab-btn active" data-category="weight">
+                    <i class="fas fa-weight"></i>
+                    <span>Weight</span>
+                </button>
+                <button class="tab-btn" data-category="length">
+                    <i class="fas fa-ruler"></i>
+                    <span>Length</span>
+                </button>
+                <button class="tab-btn" data-category="temperature">
+                    <i class="fas fa-temperature-high"></i>
+                    <span>Temperature</span>
+                </button>
+                <button class="tab-btn" data-category="area">
+                    <i class="fas fa-vector-square"></i>
+                    <span>Area</span>
+                </button>
+                <button class="tab-btn" data-category="volume">
+                    <i class="fas fa-flask"></i>
+                    <span>Volume</span>
+                </button>
+                <button class="tab-btn" data-category="time">
+                    <i class="fas fa-clock"></i>
+                    <span>Time</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Conversion Section -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Loading Shimmer -->
+            <div class="loading-shimmer" id="loadingShimmer">
+                <div class="shimmer-line"></div>
+                <div class="shimmer-line"></div>
+                <div class="shimmer-line"></div>
+            </div>
+
+            <!-- Conversion Card -->
+            <div class="conversion-card" id="conversionCard">
+                <!-- From Unit Section -->
+                <div class="input-group">
+                    <label class="input-label">From</label>
+                    <div class="input-row">
+                        <input 
+                            type="number" 
+                            class="value-input" 
+                            id="fromValue" 
+                            placeholder="Enter value"
+                            step="any"
+                        >
+                        <select class="unit-select" id="fromUnit">
+                            <!-- Dynamically populated -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Swap Button -->
+                <div class="swap-container">
+                    <button class="swap-btn" id="swapBtn" aria-label="Swap Units">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                </div>
+
+                <!-- To Unit Section -->
+                <div class="input-group">
+                    <label class="input-label">To</label>
+                    <div class="input-row">
+                        <input 
+                            type="number" 
+                            class="value-input" 
+                            id="toValue" 
+                            placeholder="Result"
+                            readonly
+                        >
+                        <select class="unit-select" id="toUnit">
+                            <!-- Dynamically populated -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Convert Button -->
+                <button class="convert-btn" id="convertBtn">
+                    <i class="fas fa-calculator"></i>
+                    <span>Convert</span>
+                </button>
+
+                <!-- Result Display Box -->
+                <div class="result-box" id="resultBox">
+                    <div class="result-content">
+                        <span id="resultText">Enter a value to convert</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Floating Button -->
+            <div class="help-float" id="helpFloat">
+                <button class="help-btn" aria-label="Help">
+                    <i class="fas fa-question"></i>
+                </button>
+                <div class="help-tooltip">
+                    <p><strong>How to use:</strong></p>
+                    <p>Enter a value, select units, and click Convert!</p>
+                    <p>Use the swap button to switch units quickly.</p>
+                    <hr style="margin: 10px 0; border: none; border-top: 1px solid rgba(0,0,0,0.1);">
+                    <p><strong>Keyboard Shortcuts:</strong></p>
+                    <p style="font-size: 13px;">• <kbd>Ctrl+S</kbd> - Swap units</p>
+                    <p style="font-size: 13px;">• <kbd>Ctrl+D</kbd> - Dark mode</p>
+                    <p style="font-size: 13px;">• <kbd>Esc</kbd> - Clear inputs</p>
+                    <p style="font-size: 13px;">• <kbd>Alt+→/←</kbd> - Navigate tabs</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Popup -->
+    <div class="success-popup" id="successPopup">
+        <i class="fas fa-check-circle"></i>
+        <span>Converted Successfully!</span>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Unit Converter. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="terms.html" class="footer-link">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
