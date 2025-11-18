@@ -105,6 +105,8 @@ body.dark-mode .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-m);
 }
 
 .logo {
@@ -112,6 +114,8 @@ body.dark-mode .header {
     align-items: center;
     gap: var(--spacing-m);
     color: var(--primary-green);
+    flex: 1;
+    min-width: 0;
 }
 
 .logo i {
@@ -128,6 +132,15 @@ body.dark-mode .header {
 body.dark-mode .logo h1 {
     color: var(--text-primary);
     text-shadow: 0 0 20px rgba(26, 186, 133, 0.3);
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-m);
 }
 
 /* Dark Mode Toggle */
@@ -365,6 +378,13 @@ body.dark-mode .input-label {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-m);
+}
+
+@media screen and (max-width: 640px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-s);
+    }
 }
 
 /* Input Field */
@@ -982,33 +1002,78 @@ body.dark-mode *:focus-visible {
 
 /* Tablet (≤ 768px) */
 @media screen and (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-l);
+    }
+    
+    .header {
+        padding: var(--spacing-m) 0;
+    }
+    
+    .header-content {
+        gap: var(--spacing-m);
+    }
+    
     .logo h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .logo i {
-        font-size: 24px;
+        font-size: 22px;
+    }
+    
+    .tabs-section {
+        padding: var(--spacing-l) 0 var(--spacing-m) 0;
     }
     
     .tabs-container {
         justify-content: flex-start;
+        gap: var(--spacing-s);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
     }
     
     .tab-btn {
-        font-size: 16px;
+        font-size: 15px;
         padding: var(--spacing-s) var(--spacing-l);
+        flex-shrink: 0;
+    }
+    
+    .tab-btn i {
+        font-size: 18px;
     }
     
     .conversion-card {
         padding: var(--spacing-l);
+        margin: 0;
+    }
+    
+    .input-label {
+        font-size: 15px;
+    }
+    
+    .value-input,
+    .unit-select {
+        height: 46px;
+        font-size: 16px;
+    }
+    
+    .convert-btn {
+        font-size: 17px;
+        padding: 13px var(--spacing-l);
     }
     
     .result-content {
         font-size: 20px;
     }
     
+    .result-box {
+        padding: 18px;
+    }
+    
     .help-float {
-        bottom: 20px;
+        bottom: 80px;
         right: 20px;
     }
     
@@ -1018,16 +1083,59 @@ body.dark-mode *:focus-visible {
         font-size: 20px;
     }
     
+    .help-tooltip {
+        width: 220px;
+        right: -10px;
+    }
+    
     .success-popup {
-        bottom: 20px;
+        bottom: 80px;
         right: 20px;
         left: 20px;
         font-size: 14px;
     }
     
+    .footer {
+        padding: var(--spacing-l) 0;
+    }
+    
     .footer-content {
         flex-direction: column;
         text-align: center;
+        gap: var(--spacing-m);
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Small Tablets and Large Phones (≤ 640px) */
+@media screen and (max-width: 640px) {
+    .container {
+        max-width: 100%;
+        padding: 0 var(--spacing-l);
+    }
+    
+    .converter-card {
+        padding: var(--spacing-xl);
+    }
+    
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-m);
+    }
+    
+    .tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    
+    .tab-btn {
+        min-width: 90px;
+        flex-shrink: 0;
     }
 }
 
@@ -1037,18 +1145,55 @@ body.dark-mode *:focus-visible {
         padding: 0 var(--spacing-m);
     }
     
+    .header {
+        padding: var(--spacing-m) 0;
+    }
+    
+    .header-content {
+        gap: var(--spacing-m);
+        justify-content: space-between;
+    }
+    
+    .logo {
+        gap: var(--spacing-s);
+        flex: 1;
+        min-width: 0;
+    }
+    
     .logo h1 {
-        font-size: 20px;
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .logo i {
         font-size: 20px;
+        flex-shrink: 0;
+    }
+    
+    .header-actions {
+        gap: var(--spacing-s);
+        flex-shrink: 0;
     }
     
     .dark-mode-toggle {
-        width: 45px;
-        height: 45px;
+        width: 44px;
+        height: 44px;
         font-size: 18px;
+    }
+    
+    .tabs-section {
+        padding: var(--spacing-m) 0;
+    }
+    
+    .tabs-container {
+        gap: var(--spacing-xs);
+    }
+    
+    .conversion-card {
+        padding: var(--spacing-l);
+        margin: 0;
     }
     
     .tabs-section {
@@ -1074,13 +1219,28 @@ body.dark-mode *:focus-visible {
         font-size: 15px;
     }
     
+    .swap-btn-container {
+        margin: var(--spacing-m) 0;
+    }
+    
+    .swap-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+    
     .convert-btn {
         font-size: 16px;
         padding: 12px var(--spacing-l);
+        width: 100%;
     }
     
     .result-content {
         font-size: 18px;
+    }
+    
+    .result-box {
+        padding: var(--spacing-m);
     }
     
     .help-tooltip {
@@ -1095,10 +1255,84 @@ body.dark-mode *:focus-visible {
     }
 }
 
+/* Extra Small Mobile (≤ 360px) */
+@media screen and (max-width: 360px) {
+    .container {
+        padding: 0 var(--spacing-s);
+    }
+    
+    .logo h1 {
+        font-size: 16px;
+    }
+    
+    .logo i {
+        font-size: 18px;
+    }
+    
+    .dark-mode-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .tab-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        min-width: 80px;
+    }
+    
+    .tab-btn i {
+        font-size: 14px;
+    }
+    
+    .conversion-card {
+        padding: var(--spacing-m);
+    }
+    
+    .input-label {
+        font-size: 13px;
+    }
+    
+    .value-input,
+    .unit-select {
+        height: 44px;
+        font-size: 15px;
+    }
+    
+    .swap-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .convert-btn {
+        font-size: 15px;
+        padding: 12px var(--spacing-m);
+    }
+    
+    .result-content {
+        font-size: 15px;
+    }
+    
+    .result-box {
+        padding: var(--spacing-s);
+    }
+    
+    .help-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
 /* Large Desktop (≥ 1024px) */
 @media screen and (min-width: 1024px) {
     .conversion-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .tab-btn:hover span {
+        letter-spacing: 0.5px;
     }
 }
